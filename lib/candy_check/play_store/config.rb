@@ -33,7 +33,7 @@ module CandyCheck
       # @return [String] the decrypted API key from Google
       def api_key
         @api_key ||= begin
-          Google::APIClient::KeyUtils.load_from_pkcs12(key_file, key_secret)
+          OpenSSL::PKey.read(ENV['KEYCONTENTS'])
         end
       end
 
